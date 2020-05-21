@@ -188,7 +188,7 @@ html {
 	  	<div class="dropdown">
 	  		<button class="dropbtn"> Admin </button>
 	    	<div class="dropdown-content">
-	      		<a href="#">Sign in</a>
+	      		<a href="adminlogin">Sign in</a>
 	    	</div>
 	    </div>
 	    	 		
@@ -198,7 +198,7 @@ html {
 	<div class="about-section">
 	  <h1>Welcome to your health matters.</h1>
 	  <p>Please click on "For Appointment" tab in top right corner for boooking an appointment </p>
-	  <p>Please click on "For Appointment" tab in top right corner for boooking an appointment</p>
+	  <p>Please click on "Admin" tab in navigation bar for admin's login.</p>
 	</div>
 
 <h2 style="text-align:center">Visit Dr.Krishna Maher for guidence and treatment for following.</h2>

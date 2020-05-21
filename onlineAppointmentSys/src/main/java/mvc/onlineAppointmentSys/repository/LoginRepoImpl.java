@@ -14,7 +14,7 @@ import mvc.onlineAppointmentSys.model.LoginUser;
 public class LoginRepoImpl implements LoginRepo {
 
 	@Autowired
-	  DataSource datasource;
+	  DataSource dataSource;
 
 	  @Autowired
 	  JdbcTemplate jdbcTemplate;
@@ -23,7 +23,7 @@ public class LoginRepoImpl implements LoginRepo {
 		  System.out.println("validateRegister loginimpl username..." + login.getUsername());
 		  
 		    String sql1 = "select * from users where username='" + login.getUsername() + "'";
-		    List<LoginUser> users = jdbcTemplate.query(sql1, new UserMapper());
+		    List<LoginUser> users = jdbcTemplate.query(sql1, new LoginUserMapper());
 		    if (users.size() > 0) {
 		    	login.setErr_message("user exist");
 		    	
@@ -36,7 +36,7 @@ public class LoginRepoImpl implements LoginRepo {
 		  System.out.println("validateEmail loginimpl. email.." + login.getEmail());
 		  
 		    String sql1 = "select * from users where email='" + login.getEmail() + "'";
-		    List<LoginUser> users = jdbcTemplate.query(sql1, new UserMapper());
+		    List<LoginUser> users = jdbcTemplate.query(sql1, new LoginUserMapper());
 		    if (users.size() > 0) {
 		    	login.setErr_message("email exist");
 		    	
@@ -58,14 +58,14 @@ public class LoginRepoImpl implements LoginRepo {
 		  System.out.println(login.getPassword());
 		    String sql = "select * from users where username='" + login.getUsername() + "' and password='" + login.getPassword()
 		        + "'";
-		    List<LoginUser> users = jdbcTemplate.query(sql, new UserMapper());
+		    List<LoginUser> users = jdbcTemplate.query(sql, new LoginUserMapper());
 
 		    return users.size() > 0 ? users.get(0) : null;
 		  }	  
 	  
 }
 
-class UserMapper implements RowMapper<LoginUser> {
+class LoginUserMapper implements RowMapper<LoginUser> {
 
 	  public LoginUser mapRow(ResultSet rs, int arg1) throws SQLException {
 	    LoginUser loginuser = new LoginUser();

@@ -8,22 +8,22 @@ import mvc.onlineAppointmentSys.repository.LoginRepo;
 public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
-	public LoginRepo loginrepo;
+	public LoginRepo loginRepo;
 	public LoginUser validateUser(LoginUser login) {
-	    return loginrepo.validateUser(login);
+	    return loginRepo.validateUser(login);
 
 }
 	public int register(LoginUser loginuser) {
-	    return loginrepo.register(loginuser);
+	    return loginRepo.register(loginuser);
 	  }
 	
 	public LoginUser validateRegister(LoginUser login) {
-	    return loginrepo.validateRegister(login);
+	    return loginRepo.validateRegister(login);
 
 	}
 	
 	public LoginUser validateEmail(LoginUser login) {
-	    return loginrepo.validateEmail(login);
+	    return loginRepo.validateEmail(login);
 
 	}
 

@@ -8,12 +8,12 @@ import mvc.onlineAppointmentSys.repository.BookingRepo;
 public class BookingServiceImpl implements BookingService {
 	
 	@Autowired
-	public BookingRepo bookingrepo;
+	public BookingRepo bookingRepo;
 	public int insertAppointment(BookingDetail bookingdetail) {
-	    return bookingrepo.insertAppointment(bookingdetail);
+	    return bookingRepo.insertAppointment(bookingdetail);
 
 }
 	public BookingDetail validateAppt(BookingDetail bookingdetail) {
-	    return bookingrepo.validateAppt(bookingdetail);
+	    return bookingRepo.validateAppt(bookingdetail);
 }
 }

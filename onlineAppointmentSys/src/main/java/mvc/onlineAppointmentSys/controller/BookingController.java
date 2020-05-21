@@ -24,7 +24,7 @@ import mvc.onlineAppointmentSys.srevice.BookingService;
 public class BookingController {
 	Date lv_date = null;
 	@Autowired
-	BookingService bookingservice;
+	BookingService bookingService;
 	
 	@InitBinder
 	private void dateBinder(WebDataBinder binder) {
@@ -41,7 +41,7 @@ public class BookingController {
 	      @ModelAttribute("bookingdetail") BookingDetail bookingdetail) {
 	    ModelAndView mavsummary = null;
 	    BookingDetail bd = null;
-	    bd =  bookingservice.validateAppt(bookingdetail);
+	    bd =  bookingService.validateAppt(bookingdetail);
 	    
 	    if (bd.getError_message() == "Date null" ) {
 	    	System.out.println("return to welcome page as date null..");
@@ -67,7 +67,7 @@ public class BookingController {
 	    else { 
 	    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");  
 		    String lv_date= formatter.format(bookingdetail.getBooking_date());  
-	    	bookingservice.insertAppointment(bookingdetail);
+		    bookingService.insertAppointment(bookingdetail);
 		    mavsummary = new ModelAndView("summary");
 		    mavsummary.addObject("booking_id", bookingdetail.getBooking_id());
 		    mavsummary.addObject("name", bookingdetail.getName());

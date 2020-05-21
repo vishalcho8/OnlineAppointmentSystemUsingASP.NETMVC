@@ -17,7 +17,7 @@ import mvc.onlineAppointmentSys.model.LoginUser;
 public class BookingRepoImpl implements BookingRepo {
 
 	@Autowired
-	  DataSource datasource;
+	  DataSource dataSource;
 
 	  @Autowired
 	  JdbcTemplate jdbcTemplate;

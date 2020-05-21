@@ -18,7 +18,7 @@ import mvc.onlineAppointmentSys.srevice.LoginService;
 public class LoginController {
 
 	@Autowired
-	LoginService loginservice;
+	LoginService loginService;
 	
 	   @RequestMapping(value = "/login", method = RequestMethod.GET)
 	  public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -32,7 +32,7 @@ public class LoginController {
 	  public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
 	      @ModelAttribute("login") LoginUser login) {
 	    ModelAndView mav = null;
-	    LoginUser user = loginservice.validateUser(login);
+	    LoginUser user = loginService.validateUser(login);
 
 	    if (user != null ) {
 	      mav = new ModelAndView("welcome");
