@@ -82,7 +82,7 @@ public class BookingController {
     }
 	
 	@GetMapping("/updatebooking")
-	public String showUpdateTodoPage(@RequestParam long id, ModelMap model) {
+	public String showUpdateBookingPage(@RequestParam long id, ModelMap model) {
 
 		BookingDetail bd = bookingService.findById(id).get();
 		
