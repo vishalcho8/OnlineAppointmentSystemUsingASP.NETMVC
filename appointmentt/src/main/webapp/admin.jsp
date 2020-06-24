@@ -173,7 +173,8 @@ tr:nth-child(even) {
 				      <th>Name</th>
 				      <th>Email</th>
 				      <th>Date</th>
-				      <th>Time</th>
+				      <th>Time from</th>
+				      <th>Time to</th>
 				      <th>Update</th>
 				      <th>Delete</th>				      
 			     </tr>
@@ -185,8 +186,9 @@ tr:nth-child(even) {
 			       <td>${bookinglist.email}</td>
 			       <td>${bookinglist.booking_date} </td>
 			       <td>${bookinglist.booking_time_from}</td>
+			       <td>${bookinglist.booking_time_to}</td>
 			       <td><a type="button" id="login-form-submit"
-			        href="#">Update</a> </td>
+			        href="/updatebooking?id=${bookinglist.booking_id}">Update</a> </td>
 			       <td> <a type="button" id="login-form-submit"
 			        href="/delete?id=${bookinglist.booking_id}">Delete</a></td>
 			      </tr>

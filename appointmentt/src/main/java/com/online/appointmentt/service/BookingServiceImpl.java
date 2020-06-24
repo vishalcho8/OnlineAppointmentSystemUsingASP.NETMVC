@@ -34,10 +34,9 @@ public class BookingServiceImpl implements BookingService {
 	    }
     }	
 	
-	/* @Override
-    public BookingDetail validateBooking() {
-		
-        return bookingRepository.validateBooking();
-    } */
+	@Override
+    public Optional < BookingDetail > findById(long id) {
+        return bookingRepository.findById(id);
+    }
 	
 }

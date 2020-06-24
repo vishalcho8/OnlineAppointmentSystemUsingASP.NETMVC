@@ -3,9 +3,12 @@ package com.online.appointmentt.web;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -77,5 +80,34 @@ public class BookingController {
     	
         return model;
     }
+	
+	@GetMapping("/updatebooking")
+	public String showUpdateTodoPage(@RequestParam long id, ModelMap model) {
+
+		BookingDetail bd = bookingService.findById(id).get();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+	    String lv_date= formatter.format(bd.getBooking_date());
+	    
+	    System.out.println("updatebooking booking_date in controller..." + lv_date);
+		System.out.println("updatebooking booking_id in controller..." + bd.getBooking_id());
+		System.out.println("updatebooking booking_date in controller..." + bd.getBooking_date());
+	    System.out.println("updatebooking booking_time_from in controller..." + bd.getBooking_time_from());
+	    System.out.println("updatebooking booking_time_to in controller..." + bd.getBooking_time_to());
+	    
+        model.put("bookingdetail", bd);
+        return "updatebooking";
+    } 
+	
+	@PostMapping("/updatebooking")
+	public ModelAndView updatebooking(@ModelAttribute("bookingdetail") BookingDetail bookingdetail) {
+		ModelAndView model = new ModelAndView("admin");
+		
+		bookingService.save(bookingdetail);
+		model.addObject("admin", bookingService.findAll());
+		
+        return model;
+    }
+
 	
 }

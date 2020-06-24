@@ -156,13 +156,20 @@
 		
 		<h1 id="Reg-header"> Appointment Rescheduling </h1>
 		 
-		<form:form id="AppForm" modelAttribute="bookingdetail">
+		<form:form id="AppForm" method="POST" modelAttribute="bookingdetail">
 			<form:hidden path="booking_id" />
+			<form:hidden path="name" />
+			<form:hidden path="email" />
+			<form:hidden path="phone" />
+			<form:hidden path="booked_on" />
 			<table align="center">
 				<tr>
 				<td>Please provide following details.</td>
-				</tr>		
-				 
+				</tr>
+						
+				<tr>
+				<td>only appointment Date and time can be updated.</td>
+				</tr>	
 				<tr>
 				<td><form:input class="App-form-field" path="booking_date" type="date" id="start" name="appDate"
 				       value="${booking_date_temp}"
@@ -172,7 +179,7 @@
 				
 				<tr>
 				<td> <form:select class="App-form-field" path="booking_time_from" id="apptTF" name="apptFrom">
-				    <option value="09.00" selected="${booking_time_from}">09.00</option>
+				    <option value="09.00" selected="">09.00</option>
 				    <option value="09.30">09.30</option>
 				    <option value="10.00">10.00</option>
 				    <option value="10.30">10.30</option>
@@ -197,11 +204,10 @@
 				<td> <small>Choose Appointment from</small> </td>
 				</tr>
 				
-				
 				<tr>
 				<td> <form:select class="App-form-field" path="booking_time_to" id="apptTT" name="apptTo">
-				    <option value="09.00" selected="${booking_time_to}">09.00</option>
-				    <option value="09.30" >09.30</option>
+				    <option value="09.00" >09.00</option>
+				    <option value="09.30" selected="">09.30</option>
 				    <option value="10.00">10.00</option>
 				    <option value="10.30">10.30</option>
 				    <option value="11.00">11.00</option>
