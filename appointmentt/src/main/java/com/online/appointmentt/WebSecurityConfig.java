@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/resources/**", "/registration").permitAll()
+                .antMatchers("/resources/admin/**", "/admin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -36,7 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+        	.and()
+        	.exceptionHandling().accessDeniedPage("/403.jsp");
     }
 
     @Bean

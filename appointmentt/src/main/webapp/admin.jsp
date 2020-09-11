@@ -21,12 +21,12 @@
 	  display: grid;
 	  justify-items: center;
 	  align-items: center;
-	  background-color: #3a3a3a;
+	  background-color: #6df076;
 	}
 	
 	#main-holder {
-	  width: 50%;
-	  height: 70%;
+	  width: auto;
+	  height: auto;
 	  display: grid;
 	  justify-items: center;
 	  align-items: center;
@@ -40,6 +40,7 @@
 	  display: grid;
 	  justify-items: center;
 	  align-items: center;
+	  overflow: scroll;
 	}
 	
 	.login-form-field::placeholder {

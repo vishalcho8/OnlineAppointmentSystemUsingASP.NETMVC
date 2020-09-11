@@ -1,5 +1,6 @@
 package com.online.appointmentt.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,11 @@ public class BookingServiceImpl implements BookingService {
     public Optional < BookingDetail > findById(long id) {
         return bookingRepository.findById(id);
     }
+	
+	/* @Override
+    public List<BookingDetail> getIdByBookingDate(Date booking_date) {
+
+       return bookingRepository.getIdByBookingDate(booking_date);
+    } */
 	
 }

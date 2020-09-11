@@ -2,6 +2,7 @@ package com.online.appointmentt.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -38,10 +39,12 @@ public class BookingController {
 	}
 	
 	@PostMapping("/bookingProcess")
-    public ModelAndView bookapp(@ModelAttribute("bookingdetail") BookingDetail bookingdetail) {
+    public ModelAndView bookapp(@ModelAttribute("bookingdetail") BookingDetail bookingdetail /*, @RequestParam Date booking_date */) {
 
-		/* BookingDetail bd = bookingService.validateBooking();
-		if (bd == null) { */
+		/* System.out.println("getIdByBookingDate booking date..." + booking_date);
+		List<BookingDetail> bd = bookingService.getIdByBookingDate(booking_date);		
+		if (bd == null) { 
+			System.out.println("getIdByBookingDate..." + bd.size()); */
 			ModelAndView model = new ModelAndView("summary");
 	        bookingService.save(bookingdetail);
 	        
@@ -55,7 +58,9 @@ public class BookingController {
 		    model.addObject("booking_time_to", bookingdetail.getBooking_time_to());
 		    model.addObject("phone", bookingdetail.getPhone()); 
 		    return model;
-	     /* } else {
+	     /*  } else {
+	    	  
+	    	System.out.println("getIdByBookingDate bd not null...");
 	    	ModelAndView model = new ModelAndView("welcome");
 	    	model.addObject("message", "Appointment is already booked for this time."); 
 	    	return model;
