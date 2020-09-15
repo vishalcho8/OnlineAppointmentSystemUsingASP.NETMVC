@@ -18,6 +18,6 @@ public interface BookingRepository extends JpaRepository<BookingDetail, Long> {
 	void deleteById(long id);
 	Optional < BookingDetail > findById(long id);
 	
-	/*@Query("SELECT b FROM booking_dets b WHERE b.booking_date = ?1")
-    public List<BookingDetail> getIdByBookingDate(Date booking_date); */
+	@Query("SELECT b FROM BookingDetail b WHERE b.booking_date = ?1 and b.booking_time_from < ?3 and b.booking_time_to > ?2")
+    public List<BookingDetail> getIdByBookingDate(Date booking_date, String booking_time_from, String booking_time_to); 
 }

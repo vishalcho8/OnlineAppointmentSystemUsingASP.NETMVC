@@ -207,10 +207,9 @@
 				    <option value="18.00">18.00</option>
 				</form:select> 
 				</td>
-				
+			
 				<td> <small>Choose Appointment from</small> </td>
 				</tr>
-				
 				
 				<tr>
 				<td> <form:select class="App-form-field" path="booking_time_to" id="apptTT" name="apptTo">

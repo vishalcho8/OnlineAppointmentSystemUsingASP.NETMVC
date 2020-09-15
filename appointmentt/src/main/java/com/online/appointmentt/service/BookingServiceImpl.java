@@ -40,10 +40,10 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.findById(id);
     }
 	
-	/* @Override
-    public List<BookingDetail> getIdByBookingDate(Date booking_date) {
+	@Override
+    public List<BookingDetail> getIdByBookingDate(Date booking_date, String booking_time_from, String booking_time_to) {
 
-       return bookingRepository.getIdByBookingDate(booking_date);
-    } */
+       return bookingRepository.getIdByBookingDate(booking_date, booking_time_from, booking_time_to);
+    }
 	
 }

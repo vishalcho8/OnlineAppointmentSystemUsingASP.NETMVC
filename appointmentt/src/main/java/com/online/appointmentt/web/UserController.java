@@ -62,7 +62,6 @@ public class UserController {
 
     @GetMapping({"/", "/welcome"})
     public ModelAndView welcome(@ModelAttribute("bookingdetail") BookingDetail bookingdetail) {
-    	//model.addAttribute("bookingdetail", new BookingDetail());
     	ModelAndView model = new ModelAndView("welcome");
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
  	    String lv_date= formatter.format(new Date()); 

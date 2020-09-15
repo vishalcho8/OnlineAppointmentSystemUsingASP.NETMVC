@@ -1,6 +1,7 @@
 package com.online.appointmentt.web;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +9,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -19,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.online.appointmentt.model.BookingDetail;
+import com.online.appointmentt.repository.BookingRepository;
 import com.online.appointmentt.service.BookingService;
+import com.online.appointmentt.validator.UserValidator;
 
 @Controller
 public class BookingController {
@@ -39,12 +45,28 @@ public class BookingController {
 	}
 	
 	@PostMapping("/bookingProcess")
-    public ModelAndView bookapp(@ModelAttribute("bookingdetail") BookingDetail bookingdetail /*, @RequestParam Date booking_date */) {
+    public ModelAndView bookapp(@ModelAttribute("bookingdetail") BookingDetail bookingdetail ,
+    								@RequestParam Date booking_date,
+    								@DateTimeFormat(iso = ISO.DATE) LocalDate date,
+    								@RequestParam String booking_time_from , 
+    								@RequestParam String booking_time_to) {
 
-		/* System.out.println("getIdByBookingDate booking date..." + booking_date);
-		List<BookingDetail> bd = bookingService.getIdByBookingDate(booking_date);		
-		if (bd == null) { 
-			System.out.println("getIdByBookingDate..." + bd.size()); */
+	        float lv_timefrom = Float.parseFloat(bookingdetail.getBooking_time_from());
+	    	float lv_timeto = Float.parseFloat(bookingdetail.getBooking_time_to());
+	    	
+	    	System.out.println("lv_timefrom in booking controller..." + lv_timefrom);
+	    	System.out.println("lv_timeto in booking controller..." + lv_timeto);
+	    	
+	        if (lv_timefrom >= lv_timeto) {
+	        	System.out.println("Time from should be less than time to......");
+	        	ModelAndView model = new ModelAndView("welcome"); 
+	        	model.addObject("message", "Appointment Time from should be less than time to."); 
+	            return model;
+	        }
+	        
+		List<BookingDetail> bd = bookingService.getIdByBookingDate(booking_date, booking_time_from, booking_time_to);		
+		if (bd.size() == 0 ) { 
+			System.out.println("getIdByBookingDate sixe null..." + bd.size());
 			ModelAndView model = new ModelAndView("summary");
 	        bookingService.save(bookingdetail);
 	        
@@ -58,13 +80,14 @@ public class BookingController {
 		    model.addObject("booking_time_to", bookingdetail.getBooking_time_to());
 		    model.addObject("phone", bookingdetail.getPhone()); 
 		    return model;
-	     /*  } else {
+	       } else {
 	    	  
 	    	System.out.println("getIdByBookingDate bd not null...");
+	    	System.out.println("getIdByBookingDate..." + bd.size()); 
 	    	ModelAndView model = new ModelAndView("welcome");
 	    	model.addObject("message", "Appointment is already booked for this time."); 
 	    	return model;
-	    } */
+	    } 
     }
 	
 	@GetMapping("/admin")
@@ -94,6 +117,7 @@ public class BookingController {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 	    String lv_date= formatter.format(bd.getBooking_date());
 	    
+	    //Traces to check for values
 	    System.out.println("updatebooking booking_date in controller..." + lv_date);
 		System.out.println("updatebooking booking_id in controller..." + bd.getBooking_id());
 		System.out.println("updatebooking booking_date in controller..." + bd.getBooking_date());

@@ -81,11 +81,6 @@ public class BookingDetail {
 	public void setBooking_time_to(String booking_time_to) {
 		this.booking_time_to = booking_time_to;
 	}
-	/* public String getError_message() {
-		return error_message;
-	}
-	public void setError_message(String error_message) {
-		this.error_message = error_message;
-	} */
+	
 
 }
