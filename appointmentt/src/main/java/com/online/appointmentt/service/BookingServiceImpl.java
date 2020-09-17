@@ -46,4 +46,10 @@ public class BookingServiceImpl implements BookingService {
        return bookingRepository.getIdByBookingDate(booking_date, booking_time_from, booking_time_to);
     }
 	
+	@Override
+    public List<BookingDetail> getUserAppointment(String username) {
+
+       return bookingRepository.getUserAppointment(username);
+    }
+	
 }

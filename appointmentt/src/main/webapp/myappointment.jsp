@@ -180,7 +180,7 @@ tr:nth-child(even) {
 				      <th>Delete</th>				      
 			     </tr>
 		  			    
-				 <c:forEach items="${admin}" var="bookinglist">
+				 <c:forEach items="${myappointment}" var="bookinglist">
 			      <tr>
 			       <td>${bookinglist.booking_id}</td>
 			       <td>${bookinglist.name}</td>
@@ -189,15 +189,19 @@ tr:nth-child(even) {
 			       <td>${bookinglist.booking_time_from}</td>
 			       <td>${bookinglist.booking_time_to}</td>
 			       <td><a type="button" id="login-form-submit"
-			        href="/updatebooking?id=${bookinglist.booking_id}">Update</a> </td>
+			        href="/updatebookingmyapp?id=${bookinglist.booking_id}&username=${pageContext.request.userPrincipal.name}">Update</a> </td>
 			       <td> <a type="button" id="login-form-submit"
-			        href="/delete?id=${bookinglist.booking_id}">Delete</a></td>
+			        href="/deletemyapp?id=${bookinglist.booking_id}&username=${pageContext.request.userPrincipal.name}">Delete</a></td>
 			      </tr>
 			     </c:forEach>
-			     
 			</table>
+			<table align="center">
+				<tr>
+					<td style="font-style: italic; color: red;">${message}</td>
+				</tr>
+			</table>
+			
 		</form:form>
  	</main>
-	
 </body>
 </html>

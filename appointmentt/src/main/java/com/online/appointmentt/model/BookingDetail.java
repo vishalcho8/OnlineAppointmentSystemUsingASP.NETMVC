@@ -32,7 +32,7 @@ public class BookingDetail {
 	private Date booking_date;
 	private String booking_time_from;
 	private String booking_time_to; 
-	//private String error_message;
+	private String username;
 	public long getBooking_id() {
 		return booking_id;
 	}
@@ -81,6 +81,11 @@ public class BookingDetail {
 	public void setBooking_time_to(String booking_time_to) {
 		this.booking_time_to = booking_time_to;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	} 
 	
-
 }

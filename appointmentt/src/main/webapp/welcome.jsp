@@ -151,6 +151,7 @@
 		    	</div>
 		    	</div>
 		  	</div>
+		  	<a href="/myappointment?username=${pageContext.request.userPrincipal.name}">My Appointments</a>
 		  	<a href="/admin">Admin</a> 	
 		</div>
 		

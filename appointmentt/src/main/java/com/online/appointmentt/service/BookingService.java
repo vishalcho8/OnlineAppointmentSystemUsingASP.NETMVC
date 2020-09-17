@@ -13,4 +13,5 @@ public interface BookingService {
 	void deleteById(long id);
 	Optional < BookingDetail > findById(long id);
 	List<BookingDetail> getIdByBookingDate(Date booking_date, String booking_time_from, String booking_time_to);
+	List<BookingDetail> getUserAppointment(String username);
 }
