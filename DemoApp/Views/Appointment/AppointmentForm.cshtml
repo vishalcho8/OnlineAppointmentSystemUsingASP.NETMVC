@@ -1,0 +1,83 @@
+﻿@model DemoApp.Models.Appointments
+@{
+    ViewBag.Title = "AppointmentForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Appointment Form</h2>
+
+@using (Html.BeginForm("Save", "Appointment"))
+{
+    @Html.ValidationSummary(true, "Please fix the following error(s):", new { @style = "color:red" })
+    @Html.ValidationMessage("Error", new { @style = "color:red" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerGender)
+        @Html.DropDownListFor(m => m.CustomerGender,
+                new SelectList(Enum.GetValues(typeof(DemoApp.Models.Gender))),
+                new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerGender)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ApptDate)
+        @if (Model.ApptDate == DateTime.MinValue)
+        {
+
+            @Html.TextBoxFor(m => m.ApptDate, "{0:d MMM yyyy}", new { @type = "date", @Value = @DateTime.Now.ToShortDateString(), @class = "form-control" })
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.ApptDate, "{0:d MMM yyyy}", new { @type = "date", @Value = @Model.ApptDate.ToShortDateString(), @class = "form-control" })
+
+        }
+
+        @Html.ValidationMessageFor(m => m.ApptDate)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.selTimeF)
+        @Html.DropDownListFor(m => m.selTimeF, new SelectList(ViewBag.TimeFrom, "Value", "Text"),
+        new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.selTimeF)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.selTimeT)
+        @Html.DropDownListFor(m => m.selTimeT, new SelectList(ViewBag.TimeTo, "Value", "Text"),
+        new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.selTimeT)
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+<div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Cancel", "Index", "Appointment", null, new { @class = "btn btn-primary" })
+</div>
+   
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
